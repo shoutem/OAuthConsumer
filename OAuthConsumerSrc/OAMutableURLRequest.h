@@ -45,6 +45,7 @@
 }
 @property(readonly) NSString *signature;
 @property(readonly) NSString *nonce;
+@property(nonatomic, readwrite, retain) NSArray *parameters;
 
 - (id)initWithURL:(NSURL *)aUrl
 		 consumer:(OAConsumer *)aConsumer
@@ -62,4 +63,11 @@ signatureProvider:(id<OASignatureProviding, NSObject>)aProvider
 
 - (void)prepare;
 
+
+- (void)_generateTimestamp;
+- (void)_generateNonce;
+- (NSString *)_signatureBaseString;
+
+- (NSString *)URLStringWithoutQueryFromURL: (NSURL *) url;
+- (NSString *) URLEncodedString: (NSString *) string;
 @end

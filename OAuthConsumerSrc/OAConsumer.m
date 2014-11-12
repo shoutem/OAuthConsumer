@@ -1,5 +1,5 @@
 //
-//  OAuthConsumer.h
+//  OAConsumer.m
 //  OAuthConsumer
 //
 //  Created by Jon Crosby on 10/19/07.
@@ -23,17 +23,29 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
-#import "OAToken.h"
 #import "OAConsumer.h"
-#import "OAMutableURLRequest.h"
-#import "NSString+URLEncoding.h"
-#import "NSMutableURLRequest+Parameters.h"
-#import "NSURL+Base.h"
-#import "OASignatureProviding.h"
-#import "OAHMAC_SHA1SignatureProvider.h"
-#import "OAPlaintextSignatureProvider.h"
-#import "OARequestParameter.h"
-#import "OAServiceTicket.h"
-#import "OADataFetcher.h"
-#import "OAAsynchronousDataFetcher.h"
+
+
+@implementation OAConsumer
+@synthesize key, secret;
+
+#pragma mark init
+
+- (id)initWithKey:(NSString *)aKey secret:(NSString *)aSecret 
+{
+	if (self = [super init])
+	{
+		self.key = aKey;
+		self.secret = aSecret;
+	}
+	return self;
+}
+
+- (void)dealloc
+{
+	[key release];
+	[secret release];
+	[super dealloc];
+}
+
+@end
